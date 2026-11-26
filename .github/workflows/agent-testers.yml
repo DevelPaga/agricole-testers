@@ -96,7 +96,7 @@ permissions:
 
 jobs:
   plan:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       android: ${{ steps.m.outputs.android }}
       ios: ${{ steps.m.outputs.ios }}
@@ -121,7 +121,7 @@ jobs:
   build-android:
     needs: plan
     if: needs.plan.outputs.android != '[]'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     outputs:
       app_commit: ${{ steps.app_source.outputs.commit || github.sha }}
@@ -230,7 +230,7 @@ jobs:
 
   android:
     needs: [plan, build-android]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 120
     strategy:
       fail-fast: false
@@ -461,7 +461,7 @@ jobs:
   web:
     needs: plan
     if: needs.plan.outputs.web != '[]'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 120
     strategy:
       fail-fast: false
